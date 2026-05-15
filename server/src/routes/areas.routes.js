@@ -1,5 +1,8 @@
 const router = require('express').Router()
 const { getAll, getById, create, update, remove } = require('../controllers/areas.controller')
+const { checkRole } = require('../middleware/authorize')
+
+router.use(checkRole('admin')) 
 
 router.get('/', getAll)
 router.get('/:id', getById)
